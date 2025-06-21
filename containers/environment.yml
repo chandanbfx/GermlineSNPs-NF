@@ -1,0 +1,15 @@
+name: pipeline
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.9
+  - fastqc=0.11.9
+  - samtools=1.17
+  - bwa=0.7.17
+  - gatk4=4.3.0.0
+  - snpeff=5.1d
+  - snpsift=5.1d
+  - bbmap=38.90
+  - tabix

@@ -1,0 +1,29 @@
+Bootstrap: docker
+From: ubuntu:22.04
+
+%files
+  containers/environment.yml /environment.yml
+
+%post
+  apt-get update && apt-get install -y \
+    wget curl unzip git locales && \
+    locale-gen en_US.UTF-8 && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+
+  # Install Conda
+  wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+  bash Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda
+  export PATH="/opt/conda/bin:$PATH"
+
+  # Install Mamba and tools via env file
+  /opt/conda/bin/conda install -y -c conda-forge mamba
+  /opt/conda/bin/mamba env create -f /environment.yml
+
+  # Install Nextflow
+  cd /usr/local/bin
+  wget -qO nextflow https://github.com/nextflow-io/nextflow/releases/download/v23.10.1/nextflow
+  chmod +x nextflow
+
+%environment
+  export PATH="/opt/conda/envs/pipeline/bin:/usr/local/bin:$PATH"
+  export LC_ALL=en_US.UTF-8
+  export LANG=en_US.UTF-8
