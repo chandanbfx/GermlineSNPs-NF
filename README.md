@@ -10,7 +10,7 @@ The pipeline is optimized for low-memory systems (minimum 8GB RAM) and uses a Si
 
 - **Nextflow**: Version 23.10.1 or later
 - **Singularity**: For containerized execution
-- **System**: Minimum 8GB RAM (7.5GB available)
+- **System**: Minimum 8GB RAM
 - **Input**:
   - Paired-end FASTQ files
   - Reference genome (e.g., `chr1.fa`)
